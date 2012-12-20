@@ -15,8 +15,6 @@ public class Main extends JFrame implements ChangeListener{
   // state Panel labels
   private JPanel statePanel;
   private JLabel scoreLabel;
-  private JLabel goldLabel;
-  private JLabel instructionsLabel;
   private JLabel inventoryLabel;
   private String inventoryText;
 
@@ -37,25 +35,28 @@ public class Main extends JFrame implements ChangeListener{
 	
     // State panel to the right.
     statePanel = new JPanel();
-    statePanel.setLayout (new GridLayout(4, 1));
+    statePanel.setLayout (new GridLayout(3, 1));
     statePanel.setBorder(new LineBorder(Color.black));
     content.add(statePanel, BorderLayout.EAST);
 
     // Add score, instructions, and iventory to state panel.
     scoreLabel = new JLabel("Score: 0");
-    goldLabel = new JLabel("Gold: 0");
-    instructionsLabel = 
+    JLabel instructionsLabel = 
       new JLabel("<html>" +
-        "Collect gold and kill monsters<br>to increase your score.<br>" + 
-        "Get to the switch in the room <br>to the south to end the<br>"+
-        "game." + 
+        "You are an operative for the<br>Alliance fleet. You've been<br>" + 
+        "asked to investigate a colonial<br>station that has not been<br>"+
+        "responding to outside transmissions.<br> Find a way into the<br>"+
+        "tram to the south of you and<br>head toward the main <br>"+
+        "station. Click a spot and click<br> 'move' to move around<br>" +
+        "the room. Click on an adjacent<br> and click 'move' to move<br>"+
+        "to that room. Click on an object<br> and click 'take' to<br>" +
+        "pick it up." + 
         "</html>");
     inventoryText = new String("Inventory:");
     inventoryLabel = new JLabel("<html>" + inventoryText + "</html>");
 		
     // the progressPanel is stored in a scroll pane.
     statePanel.add(scoreLabel);
-    statePanel.add(goldLabel);
     statePanel.add(inventoryLabel);
     statePanel.add(instructionsLabel);
 	
@@ -83,12 +84,7 @@ public class Main extends JFrame implements ChangeListener{
     buttonPanel.add(btnUse);
 
     // Widgets on the control panel
-    JPanel radioPanel = new JPanel();
-    radioPanel.setLayout(new GridLayout(2, 1));
-    PauseRadio pr = new PauseRadio(g);
-    DifficultyRadio dr = new DifficultyRadio(g);
-    radioPanel.add(pr);
-    radioPanel.add(dr);
+    PauseRadio sr = new PauseRadio(g);
     JSlider inventorySlider = new JSlider(JSlider.HORIZONTAL, 
                                           g.minCapacity(), g.maxCapacity(),
                                           g.getCapacity());
@@ -99,16 +95,14 @@ public class Main extends JFrame implements ChangeListener{
 	
     // Add widgets to control Panel.  	
     controlPanel.add (buttonPanel);
-    controlPanel.add (radioPanel);
+    controlPanel.add (sr);
     controlPanel.add (inventorySlider);
-    controlPanel.add (new JLabel("Inventory Capacity"));
+    controlPanel.add (new JLabel("Capacity"));
 
     // Show the window
     setVisible (true);
-    deactivateButtons();
   }
 
-  //enables and disables certain buttons based on what is selected in the game.
   public void setButtons(Item target){
     if(target != null){
       if (target.getType() == "monster"){
@@ -138,7 +132,6 @@ public class Main extends JFrame implements ChangeListener{
     }
   }
 
-  //disables all buttons
   public void deactivateButtons(){
     btnTake.setEnabled(false);
     btnUse.setEnabled(false);
@@ -146,16 +139,12 @@ public class Main extends JFrame implements ChangeListener{
     btnMove.setEnabled(false);
   }
 	
-  //displays inventory to the player
   public void updateInventory(Item item){
-    //removes old label
     statePanel.remove(instructionsLabel);
     statePanel.remove(inventoryLabel);
     inventoryLabel = null;
-    //adds new item
     inventoryText += "<br> " + item.getType();
     inventoryLabel = new JLabel("<html>" + inventoryText + "</html>");
-    //adds the new label.
     statePanel.add(inventoryLabel);
     statePanel.add(instructionsLabel);
     validate();
@@ -169,7 +158,6 @@ public class Main extends JFrame implements ChangeListener{
     validate();
   }
 
-  //controls the inventory slider
   public void stateChanged(ChangeEvent e){
     JSlider source = (JSlider)e.getSource();
     if (!source.getValueIsAdjusting())
@@ -178,9 +166,5 @@ public class Main extends JFrame implements ChangeListener{
 	
   public void updateScore(int score){
     scoreLabel.setText("Score: " + Integer.toString(score));	
-  }
-
-  public void updateGold(int gold){
-    goldLabel.setText("Gold: " + Integer.toString(gold));
   }
 }

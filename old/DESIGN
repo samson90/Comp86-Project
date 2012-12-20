@@ -1,0 +1,52 @@
+Design Doc
+
+Inheritance:
+
+	Abstract Class Item:
+		- Player
+		- Monster
+		- Sword
+		- Key
+		- Gold
+
+Aggregation:
+
+	Class Game:
+  	- Drawing Area
+  	- Board
+  	- Items
+		- Rooms
+
+	Class Board:
+		- Room
+
+	Class Control Panel:
+		- Buttons
+		- Slider
+		- Radio Button
+
+	State Panel
+		- Label
+
+	Class Room:
+		- Item
+
+Collaboration:
+
+  class Board:
+		- Uses Room in its drawing function.
+		- Uses Main and Game to store variables and display info.
+
+	class Buttons
+		- Uses game and main.
+
+	class Room:
+		- Uses Item in its drawing function.
+		- Game and board.
+
+	Class Items:
+		- Uses State Panel to print any information.
+		- Game
+
+	Class Game
+		- Uses items for a lot of action functions and variables.

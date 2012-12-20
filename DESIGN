@@ -1,0 +1,83 @@
+Design Doc
+
+Inheritance:
+
+Abstract Class Item:
+  - Player
+  - Monster
+  - Gun
+  - Key
+  - Gold
+  - Switch
+
+Aggregation:
+
+  Class Main:
+   - MoveButton
+   - TakeButton
+   - AttackButton
+   - UseButton
+   - Game
+   - Board
+
+  Class Game:
+   - Main
+   - Board
+   - Rooms
+   - Doors
+   - Items
+
+  Class Board:
+   - Main
+   - Game
+   - Room
+   - Items
+   - Doors
+
+  Class Control Panel:
+    - Buttons
+    - Slider
+    - Radio Button
+    - Button Panel and Radio Panel
+
+  State Panel
+    - Label
+
+  Class Room:
+    - Item
+    - Main
+
+  Button Classes:
+    - Game
+    - Board
+
+  Radio Buttons:
+    - Game
+
+Collaboration:
+ 
+  class Main:
+    - Uses game to get score.
+    - Uses board to get selected Item
+
+  Class Game
+    -Uses items for a lot of action functions and variables.
+    -Uses board to get selected item.
+  
+  class Board:
+    - Calls Room in its drawing function.
+    - Uses Main and Game to store variables and display info.
+
+  class Room:
+    - Uses Item in its drawing function.
+    - Game and board.
+
+  Class Items:
+    - Uses State Panel to print any information.
+    - Game
+
+  class DifficultyRadio
+    - Uses game to manipulate 'difficulty' in game.
+
+  class PauseRadio
+    - Uses game to pause and unpause the game.
