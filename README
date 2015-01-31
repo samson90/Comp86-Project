@@ -1,13 +1,1 @@
-Changes Made From Previous Assignment:
-  - Animation added to player, monster, and switch class.
-  - Sound effects added to the gun and monster class.
-  - Gold scattered around rooms disappears as time winds down.
-  - Added a difficulty setting to the control panel. Players can chooose
-    between 'easy', 'medium', and 'hard'. Increasing the difficulty will both
-    increase the speed of monsters and decrease the amount of time gold is
-    left on the board.
-  - Doors lock and unlock every few seconds to increase difficulty.
-  - Added a game over and death screen to the game. Both screens show the net
-    score as well as a gold and time bonus.
-  - Player can move around the room as well as in between rooms.
-  - Added a 'switch' object that the player has to pull to end the game.
+Simple game I made in java for my 'Object-Oriented Programming for Graphical User Interface' class at Tufts.
